@@ -29,7 +29,7 @@ public class TopCountDriver extends Configured implements Tool {
 
 	public int run(String[] args) throws Exception 
 	{
-		if (args.length != 6) 
+		if (args.length != 8) 
 		{
 			System.err.printf("Usage: %s needs three arguments, input1, input2, output1 and output2 files\n",
 			getClass().getSimpleName());
@@ -41,6 +41,7 @@ public class TopCountDriver extends Configured implements Tool {
 		FileUtils.deleteDirectory(new File(args[4]));
 		FileUtils.deleteDirectory(new File(args[4]));
 		FileUtils.deleteDirectory(new File(args[5]));
+		FileUtils.deleteDirectory(new File("FinalResults"));
 
 		//----------------------------------------------------------------------------------------------------//	
 		
@@ -98,7 +99,7 @@ public class TopCountDriver extends Configured implements Tool {
 		
 		Job job3 = new Job();
 		job3.setJarByClass(TopCountDriver.class);
-		job3.setJobName("SortTop10UsersSort");
+		job3.setJobName("SortTop10Users");
 
 		FileInputFormat.addInputPath(job3, new Path(args[2] + "/part-r-00000"));
 		FileOutputFormat.setOutputPath(job3, new Path(args[4]));
@@ -126,7 +127,7 @@ public class TopCountDriver extends Configured implements Tool {
 		
 		Job job4 = new Job();
 		job4.setJarByClass(TopCountDriver.class);
-		job4.setJobName("SortTop10UsersSort");
+		job4.setJobName("SortTop10Users");
 
 		FileInputFormat.addInputPath(job4, new Path(args[3] + "/part-r-00000"));
 		FileOutputFormat.setOutputPath(job4, new Path(args[5]));
@@ -149,7 +150,14 @@ public class TopCountDriver extends Configured implements Tool {
 
 		System.out.println(returnValue);
 		System.out.println(job4.isSuccessful()); 
-	
+		System.out.println();
+		
+		//----------------------------------------------------------------------------------------------------//
+		
+		findTopMoviesAndUsers printResults = new findTopMoviesAndUsers(args[0], args[4], args[5], args[6], args[7]);
+		printResults.storemoviesList();
+		printResults.findTop10Movies();
+		printResults.findTopTenUsers();
 
 		return returnValue;
 	}

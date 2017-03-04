@@ -21,11 +21,6 @@ public class Top10MoviesReduceClass extends Reducer<IntWritable, DoubleWritable,
 	protected void reduce(IntWritable key, Iterable<DoubleWritable> values,
 			Reducer<IntWritable, DoubleWritable, IntWritable, DoubleWritable>.Context context) throws IOException, InterruptedException 
 	{
-		
-		Configuration conf = context.getConfiguration();
-		String param = conf.get("method");
-		System.out.println("UParam" + param);
-
 		int counter = 0;
 		double sum = 0;
 		Iterator<DoubleWritable> i = values.iterator();
