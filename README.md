@@ -21,3 +21,7 @@
 <b>Location Path to answers from Questions</b>:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FinalResults/top10Movies.txt<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FinalResults/top10Users.txt
+
+<b>Location to Docket</b><br>
+https://hub.docker.com/r/simplyvaldo/cs499_assigment3/
+
